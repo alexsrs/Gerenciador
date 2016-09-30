@@ -14,15 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 public class Logout extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		req.getSession().removeAttribute("usuario.logado");
 		PrintWriter writer = resp.getWriter();
-		Cookie cookie = new Cookies(req.getCookies()).buscaUsuarioLogado();
-		if (cookie == null) {
-			writer.println("<html><body>Usuario não estava logado !</body></html>");
-			return;
-		}
-		cookie.setMaxAge(0);
-		resp.addCookie(cookie);
 		writer.println("<html><body>Deslogado com sucesso !</body></html>");
 	}
 }
